@@ -9,6 +9,7 @@
 
 class Contact
 {
+    public:
 
 };
 
