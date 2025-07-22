@@ -7,7 +7,8 @@
 
 
 
-class Contact {
+class Contact
+{
 
 };
 
