@@ -5,12 +5,24 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
+#include "Contact.hpp"
 
+class PhoneBook
+{
+    public:
+        PhoneBook();
+        ~PhoneBook();
+        PhoneBook(const PhoneBook &other);
+        PhoneBook& operator=(const PhoneBook &other);
+        int current_index;
+        void addContact(const Contact &contact);
+        void displayContacts() const;
+        void searchContact(string name) const;
+        void clearContacts();
 
-class PhoneBook {
-
+    private:
+        Contact contacts[8];
+        int total_contacts;
 };
 
-
-
-#endif //PHONEBOOK_HPP
+#endif
