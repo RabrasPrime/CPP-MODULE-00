@@ -16,6 +16,7 @@ class PhoneBook
         PhoneBook& operator=(const PhoneBook &other);
         int current_index;
         void addContact(const Contact &contact);
+        Contact getContact(int index);
         void displayContacts() const;
         void searchContact(string name) const;
         void clearContacts();
