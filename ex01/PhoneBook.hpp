@@ -7,6 +7,9 @@
 
 #include "Contact.hpp"
 
+#include <cstdlib>
+#include <cstdio>
+
 class PhoneBook
 {
     public:
@@ -14,15 +17,19 @@ class PhoneBook
         ~PhoneBook();
         PhoneBook(const PhoneBook &other);
         PhoneBook& operator=(const PhoneBook &other);
-        int current_index;
-        void addContact(const Contact &contact);
+        void addContact(const PhoneBook &phonebook);
+		void header() const;
+		void menu() const;
+        string get_prompt(const string &prompt) const;
+        int getTotalContacts();
+        int getCurrentIndex();
         Contact getContact(int index);
         void displayContacts() const;
         void searchContact(string name) const;
-        void clearContacts();
 
     private:
         Contact contacts[8];
+		int current_index;
         int total_contacts;
 };
 
