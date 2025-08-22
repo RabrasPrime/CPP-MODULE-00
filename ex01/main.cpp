@@ -2,33 +2,39 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-int main() {
+using namespace std;
+
+int main()
+{
     PhoneBook phonebook;
     string command;
 
-    phonebook.header();
-    while (true) {
+    while (true)
+    {
+        phonebook.header();
         phonebook.menu();
-        cout << "Enter command: ";
-        if (!getline(cin, command)) {
-            if (cin.eof()) {
-                cout << "\nExiting program." << endl;
-                break;
-            }
-            cin.clear();
-            continue;
+        command = phonebook.get_prompt("Enter command: ");
+        if (command == "ADD")
+        {
+            phonebook.addContact();
         }
-        if (command == "ADD") {
-            phonebook.addContact(phonebook);
-        } else if (command == "SEARCH") {
+        else if (command == "SEARCH")
+        {
             phonebook.displayContacts();
-            string name = phonebook.get_prompt("Enter the first name, last name, or nickname of the contact to search: ");
-            phonebook.searchContact(name);
-        } else if (command == "EXIT") {
-            cout << "Exiting program." << endl;
+            string index_str = phonebook.get_prompt("Enter contact index to view details: ");
+            try {
+                int index = stoi(index_str);
+                phonebook.searchContact(index);
+            } catch (const invalid_argument &e) {
+                cout << "Error: Invalid index format" << endl;
+            } catch (const out_of_range &e) {
+                cout << "Error: Index out of range" << endl;
+            }
+        }
+        else if (command == "EXIT")
+        {
+            cout << "Exiting PhoneBook. Goodbye!" << endl;
             break;
-        } else {
-            cout << "Invalid command. Please try again." << endl;
         }
     }
     return 0;

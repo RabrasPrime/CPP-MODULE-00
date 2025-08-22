@@ -17,15 +17,14 @@ class PhoneBook
         ~PhoneBook();
         PhoneBook(const PhoneBook &other);
         PhoneBook& operator=(const PhoneBook &other);
-        void addContact(const PhoneBook &phonebook);
-		void header() const;
-		void menu() const;
-        string get_prompt(const string &prompt) const;
-        int getTotalContacts();
+        void addContact();
+		void header();
+		void menu();
+        string get_prompt(const string &prompt);
         int getCurrentIndex();
         Contact getContact(int index);
-        void displayContacts() const;
-        void searchContact(string name) const;
+        void displayContacts();
+        void searchContact(int index);
 
     private:
         Contact contacts[8];

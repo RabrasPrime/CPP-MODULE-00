@@ -1,8 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-use namespace std;
+using namespace std;
 
 PhoneBook::PhoneBook() : current_index(0), total_contacts(0) {}
 
@@ -26,34 +27,33 @@ PhoneBook& PhoneBook::operator=(const PhoneBook &other) {
     return *this;
 }
 
-void PhoneBook::header() const {
+void PhoneBook::header()
+{
     cout << "-----------------------------------" << endl;
     cout << "|    PhoneBook   d=====(￣▽￣*)b   |" << endl;
     cout << "-----------------------------------\n\n" << endl;
 }
 
-void PhoneBook::menu() const {
+void PhoneBook::menu()
+{
     cout << "   Tap one command" << endl;
     cout << "1. ADD\n" << endl;
     cout << "2. SEARCH\n" << endl;
     cout << "3. EXIT\n\n" << endl;
 }
 
-Contact getContact(const string name) const
-{
-    for (int i = 0; i < total_contacts; ++i)
-    {
-        if (contacts[i].getFirstName() == name || contacts[i].getLastName() == name || contacts[i].getNickname() == name)
-        {
-            return contacts[i];
-        }
+Contact PhoneBook::getContact(int index) {
+    if (index < 0 || index >= this->total_contacts) {
+        throw std::runtime_error("Error: Invalid index");
     }
-    throw runtime_error("Contact not found");
+    return this->contacts[index];
 }
 
-void searchContact(const string name) const {
+
+void PhoneBook::searchContact(int index)
+{
     try {
-        Contact contact = getContact(name);
+        Contact contact = getContact(index);
         cout << "Contact found: " << contact.getFirstName() << " " << contact.getLastName() << endl;
         cout << "Nickname: " << contact.getNickname() << endl;
         cout << "Phone Number: " << contact.getPhoneNumber() << endl;
@@ -63,7 +63,7 @@ void searchContact(const string name) const {
     }
 }
 
-void PhoneBook::displayContacts() const
+void PhoneBook::displayContacts()
 {
 
     if(total_contacts == 0)
@@ -88,7 +88,8 @@ void PhoneBook::displayContacts() const
     cout << "-------------------------------------------" << endl;
 }
 
-string PhoneBook::get_prompt(const string &prompt) const {
+string PhoneBook::get_prompt(const string &prompt)
+{
     string input;
 
     cout << prompt;
@@ -96,12 +97,14 @@ string PhoneBook::get_prompt(const string &prompt) const {
     {
         if (!getline(cin, input))
         {
-            clear_input();
+            std::cin.clear();
+            clearerr(stdin);
             continue;
         }
         if (cin.eof())
         {
-            clear_input();
+            std::cin.clear();
+            clearerr(stdin);
             cout << "\n";
             cout << prompt;
             continue;
@@ -116,7 +119,7 @@ string PhoneBook::get_prompt(const string &prompt) const {
     }
 }
 
-void PhoneBook::addContact(const PhoneBook &phonebook) {
+void PhoneBook::addContact() {
     Contact new_contact;
     string input;
 
