@@ -1,8 +1,27 @@
-
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <sstream>
 
 using namespace std;
+
+int stringToInt(const string& str, bool& success)
+{
+    success = false;
+    if (str.empty())
+        return 0;
+
+    istringstream iss(str);
+    int result;
+    if (iss >> result && iss.eof())
+    {
+        success = true;
+        return result;
+    }
+    return 0;
+}
 
 int main()
 {
@@ -22,13 +41,16 @@ int main()
         {
             phonebook.displayContacts();
             string index_str = phonebook.get_prompt("Enter contact index to view details: ");
-            try {
-                int index = stoi(index_str);
+            bool conversion_success;
+            int index = stringToInt(index_str, conversion_success);
+
+            if (conversion_success)
+            {
                 phonebook.searchContact(index);
-            } catch (const invalid_argument &e) {
+            }
+            else
+            {
                 cout << "Error: Invalid index format" << endl;
-            } catch (const out_of_range &e) {
-                cout << "Error: Index out of range" << endl;
             }
         }
         else if (command == "EXIT")

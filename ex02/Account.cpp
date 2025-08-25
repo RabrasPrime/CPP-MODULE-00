@@ -45,7 +45,7 @@ Account::~Account( void ) {
 }
 
 void	Account::_displayTimestamp( void ) {
-    std::time_t t = std::time(nullptr);
+    std::time_t t = std::time(NULL);
     std::tm* tm_info = std::localtime(&t);
     char buffer[20];
     std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", tm_info);
