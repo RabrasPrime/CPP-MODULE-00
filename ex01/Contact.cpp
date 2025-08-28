@@ -33,52 +33,52 @@ Contact& Contact::operator=(const Contact &other)
     return *this;
 }
 
-void Contact::setFirstName(const string &first_name)
+void Contact::setFirstName(const std::string &first_name)
 {
     firstname = first_name;
 }
 
-void Contact::setLastName(const string &last_name)
+void Contact::setLastName(const std::string &last_name)
 {
     lastname = last_name;
 }
 
-void Contact::setNickname(const string &nickname)
+void Contact::setNickname(const std::string &nickname)
 {
     this->nickname = nickname;
 }
 
-void Contact::setPhoneNumber(const string &phone_number)
+void Contact::setPhoneNumber(const std::string &phone_number)
 {
     this->phone_number = phone_number;
 }
 
-void Contact::setDarkestSecret(const string &darkest_secret)
+void Contact::setDarkestSecret(const std::string &darkest_secret)
 {
     this->darkest_secret = darkest_secret;
 }
 
-string Contact::getFirstName() const
+std::string Contact::getFirstName() const
 {
     return firstname;
 }
 
-string Contact::getLastName() const
+std::string Contact::getLastName() const
 {
     return lastname;
 }
 
-string Contact::getNickname() const
+std::string Contact::getNickname() const
 {
     return nickname;
 }
 
-string Contact::getPhoneNumber() const
+std::string Contact::getPhoneNumber() const
 {
     return phone_number;
 }
 
-string Contact::getDarkestSecret() const
+std::string Contact::getDarkestSecret() const
 {
     return darkest_secret;
 }

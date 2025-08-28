@@ -5,15 +5,13 @@
 #include <cstdlib>
 #include <sstream>
 
-using namespace std;
-
-int stringToInt(const string& str, bool& success)
+int stringToInt(const std::string& str, bool& success)
 {
     success = false;
     if (str.empty())
         return 0;
 
-    istringstream iss(str);
+    std::istringstream iss(str);
     int result;
     if (iss >> result && iss.eof())
     {
@@ -26,7 +24,7 @@ int stringToInt(const string& str, bool& success)
 int main()
 {
     PhoneBook phonebook;
-    string command;
+    std::string command;
 
     while (true)
     {
@@ -40,7 +38,7 @@ int main()
         else if (command == "SEARCH")
         {
             phonebook.displayContacts();
-            string index_str = phonebook.get_prompt("Enter contact index to view details: ");
+            std::string index_str = phonebook.get_prompt("Enter contact index to view details: ");
             bool conversion_success;
             int index = stringToInt(index_str, conversion_success);
 
@@ -50,12 +48,12 @@ int main()
             }
             else
             {
-                cout << "Error: Invalid index format" << endl;
+                std::cout << "Error: Invalid index format" << std::endl;
             }
         }
         else if (command == "EXIT")
         {
-            cout << "Exiting PhoneBook. Goodbye!" << endl;
+            std::cout << "Exiting PhoneBook. Goodbye!" << std::endl;
             break;
         }
     }

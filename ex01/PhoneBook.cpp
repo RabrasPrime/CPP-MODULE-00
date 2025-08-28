@@ -3,8 +3,6 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-using namespace std;
-
 PhoneBook::PhoneBook() : current_index(0), total_contacts(0) {}
 
 PhoneBook::~PhoneBook() {}
@@ -29,17 +27,17 @@ PhoneBook& PhoneBook::operator=(const PhoneBook &other) {
 
 void PhoneBook::header()
 {
-    cout << "-----------------------------------" << endl;
-    cout << "|    PhoneBook   d=====(￣▽￣*)b   |" << endl;
-    cout << "-----------------------------------\n\n" << endl;
+    std::cout << "-----------------------------------" << std::endl;
+    std::cout << "|    PhoneBook   d=====(￣▽￣*)b   |" << std::endl;
+    std::cout << "-----------------------------------\n\n" << std::endl;
 }
 
 void PhoneBook::menu()
 {
-    cout << "   Tap one command" << endl;
-    cout << "1. ADD\n" << endl;
-    cout << "2. SEARCH\n" << endl;
-    cout << "3. EXIT\n\n" << endl;
+    std::cout << "   Tap one command" << std::endl;
+    std::cout << "1. ADD\n" << std::endl;
+    std::cout << "2. SEARCH\n" << std::endl;
+    std::cout << "3. EXIT\n\n" << std::endl;
 }
 
 Contact PhoneBook::getContact(int index) {
@@ -49,70 +47,68 @@ Contact PhoneBook::getContact(int index) {
     return this->contacts[index];
 }
 
-
 void PhoneBook::searchContact(int index)
 {
     try {
         Contact contact = getContact(index);
-        cout << "Contact found: " << contact.getFirstName() << " " << contact.getLastName() << endl;
-        cout << "Nickname: " << contact.getNickname() << endl;
-        cout << "Phone Number: " << contact.getPhoneNumber() << endl;
-        cout << "Darkest Secret: " << contact.getDarkestSecret() << endl;
-    } catch (const runtime_error &e) {
-        cout << e.what() << endl;
+        std::cout << "Contact found: " << contact.getFirstName() << " " << contact.getLastName() << std::endl;
+        std::cout << "Nickname: " << contact.getNickname() << std::endl;
+        std::cout << "Phone Number: " << contact.getPhoneNumber() << std::endl;
+        std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
+    } catch (const std::runtime_error &e) {
+        std::cout << e.what() << std::endl;
     }
 }
 
 void PhoneBook::displayContacts()
 {
-
     if(total_contacts == 0)
     {
-        cout << "No contacts available." << endl;
+        std::cout << "No contacts available." << std::endl;
         return;
     }
 
-	cout << "-------------------------------------------" << endl;
-	cout << setw(10) << "Index" << "|"
-         << setw(10) << "First Name" << "|"
-         << setw(10) << "Last Name" << "|"
-         << setw(10) << "Nickname" << "\n" << endl;
-	cout << "-------------------------------------------" << endl;
+    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << std::setw(10) << "Index" << "|"
+              << std::setw(10) << "First Name" << "|"
+              << std::setw(10) << "Last Name" << "|"
+              << std::setw(10) << "Nickname" << "\n" << std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
     for (int i = 0; i < total_contacts; ++i)
     {
-        cout << setw(10) << i << "|";
-        cout << setw(10) << (contacts[i].getFirstName().length() > 10 ? contacts[i].getFirstName().substr(0, 9) + "." : contacts[i].getFirstName()) << "|";
-        cout << setw(10) << (contacts[i].getLastName().length() > 10 ? contacts[i].getLastName().substr(0, 9) + "." : contacts[i].getLastName()) << "|";
-        cout << setw(10) << (contacts[i].getNickname().length() > 10 ? contacts[i].getNickname().substr(0, 9) + "." : contacts[i].getNickname()) << "\n" << endl;
+        std::cout << std::setw(10) << i << "|";
+        std::cout << std::setw(10) << (contacts[i].getFirstName().length() > 10 ? contacts[i].getFirstName().substr(0, 9) + "." : contacts[i].getFirstName()) << "|";
+        std::cout << std::setw(10) << (contacts[i].getLastName().length() > 10 ? contacts[i].getLastName().substr(0, 9) + "." : contacts[i].getLastName()) << "|";
+        std::cout << std::setw(10) << (contacts[i].getNickname().length() > 10 ? contacts[i].getNickname().substr(0, 9) + "." : contacts[i].getNickname()) << "\n" << std::endl;
     }
-    cout << "-------------------------------------------" << endl;
+    std::cout << "-------------------------------------------" << std::endl;
 }
 
-string PhoneBook::get_prompt(const string &prompt)
+std::string PhoneBook::get_prompt(const std::string &prompt)
 {
-    string input;
+    std::string input;
 
-    cout << prompt;
+    std::cout << prompt;
     while (true)
     {
-        if (!getline(cin, input))
+        if (!std::getline(std::cin, input))
         {
             std::cin.clear();
             clearerr(stdin);
             continue;
         }
-        if (cin.eof())
+        if (std::cin.eof())
         {
             std::cin.clear();
             clearerr(stdin);
-            cout << "\n";
-            cout << prompt;
+            std::cout << "\n";
+            std::cout << prompt;
             continue;
         }
         if (input.empty())
         {
-            cout << "Null input, retry\n";
-            cout << prompt;
+            std::cout << "Null input, retry\n";
+            std::cout << prompt;
             continue;
         }
         return input;
@@ -121,10 +117,10 @@ string PhoneBook::get_prompt(const string &prompt)
 
 void PhoneBook::addContact() {
     Contact new_contact;
-    string input;
+    std::string input;
 
-	system("clear");
-	header();
+    system("clear");
+    header();
     input = get_prompt("Enter First Name: ");
     new_contact.setFirstName(input);
 
