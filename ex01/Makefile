@@ -48,7 +48,7 @@ INCLUDES    =   $(INC_DIR) \
 
 #=-=-=-=-=-=-COMPIL-=-=-=-=-=#
 
-CC          =   clang++
+CC          =   c++
 
 FLAGS       +=  -Wall -Wextra -Werror -std=c++98
 PPFLAGS     +=  $(addprefix -I, $(INCLUDES)) -MMD -MP

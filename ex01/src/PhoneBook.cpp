@@ -29,7 +29,7 @@ void PhoneBook::header()
 {
     std::cout << "-----------------------------------" << std::endl;
     std::cout << "|    PhoneBook   d=====(￣▽￣*)b   |" << std::endl;
-    std::cout << "-----------------------------------\n\n" << std::endl;
+    std::cout << "-----------------------------------\n" << std::endl;
 }
 
 void PhoneBook::menu()
@@ -37,7 +37,7 @@ void PhoneBook::menu()
     std::cout << "   Tap one command" << std::endl;
     std::cout << "1. ADD\n" << std::endl;
     std::cout << "2. SEARCH\n" << std::endl;
-    std::cout << "3. EXIT\n\n" << std::endl;
+    std::cout << "3. EXIT\n" << std::endl;
 }
 
 Contact PhoneBook::getContact(int index) {
